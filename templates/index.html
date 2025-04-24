@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spam Email Detector</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            text-align: center;
+        }
+        textarea {
+            width: 80%;
+            height: 100px;
+        }
+        button {
+            padding: 10px;
+            font-size: 16px;
+        }
+        .result {
+            margin-top: 20px;
+            font-size: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Spam Email Detector</h1>
+    <form action="/predict" method="post">
+        <textarea name="email_text" placeholder="Enter email content here...">{{ email_text }}</textarea>
+        <br><br>
+        <button type="submit">Check Spam</button>
+    </form>
+
+    {% if prediction %}
+    <div class="result">
+        Prediction: <span style="color: {% if prediction == 'SPAM' %}red{% else %}green{% endif %};">
+            {{ prediction }}
+        </span>
+    </div>
+    {% endif %}
+</body>
+</html>
